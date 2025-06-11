@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.NewAnalysisController" 
+            fitToWidth="true" style="-fx-background: white;">
+    <VBox spacing="20" style="-fx-padding: 20;">
+        <Label text="New Soil Analysis" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #185a9d;" />
+        
+        <!-- Basic Information -->
+        <VBox spacing="10" styleClass="form-section">
+            <Label text="Basic Information" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #43cea2;" />
+            <GridPane hgap="20" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="200" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+                
+                <Label text="Location:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <JFXTextField fx:id="locationField" promptText="Enter location" labelFloat="true" 
+                             GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                
+                <Label text="Analysis Type:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <ComboBox fx:id="typeComboBox" promptText="Select analysis type" 
+                         GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                
+                <Label text="Description:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <JFXTextArea fx:id="descriptionArea" promptText="Enter description" labelFloat="true" 
+                            prefRowCount="3" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            </GridPane>
+        </VBox>
+        
+        <!-- Soil Parameters -->
+        <VBox spacing="10" styleClass="form-section">
+            <Label text="Soil Parameters" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #43cea2;" />
+            <GridPane hgap="20" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="200" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+                
+                <Label text="pH Level (0-14):" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <JFXTextField fx:id="phField" promptText="Enter pH level" labelFloat="true" 
+                             GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                
+                <Label text="Nitrogen (mg/kg):" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <JFXTextField fx:id="nitrogenField" promptText="Enter nitrogen content" labelFloat="true" 
+                             GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                
+                <Label text="Phosphorus (mg/kg):" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <JFXTextField fx:id="phosphorusField" promptText="Enter phosphorus content" labelFloat="true" 
+                             GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                
+                <Label text="Potassium (mg/kg):" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <JFXTextField fx:id="potassiumField" promptText="Enter potassium content" labelFloat="true" 
+                             GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                
+                <Label text="Organic Matter (%):" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                <JFXTextField fx:id="organicMatterField" promptText="Enter organic matter percentage" labelFloat="true" 
+                             GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                
+                <Label text="Moisture Content (%):" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                <JFXTextField fx:id="moistureField" promptText="Enter moisture content" labelFloat="true" 
+                             GridPane.rowIndex="5" GridPane.columnIndex="1" />
+            </GridPane>
+        </VBox>
+        
+        <!-- Action Buttons -->
+        <HBox spacing="20" alignment="CENTER_RIGHT">
+            <JFXButton text="Cancel" style="-fx-background-color: #666; -fx-text-fill: white;" 
+                      onAction="#handleCancel" />
+            <JFXButton text="Analyze" style="-fx-background-color: #43cea2; -fx-text-fill: white;" 
+                      onAction="#handleAnalyze" />
+        </HBox>
+        
+        <!-- Error Label -->
+        <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
+    </VBox>
+</ScrollPane> 

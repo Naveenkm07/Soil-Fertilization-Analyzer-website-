@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.DashboardHomeController" 
+      spacing="20" style="-fx-padding: 20;" styleClass="dashboard-home">
+    
+    <!-- Header Section with Search -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label text="Dashboard Overview" styleClass="title-label" />
+        <Region HBox.hgrow="ALWAYS" />
+        <JFXTextField fx:id="searchField" promptText="Search analyses..." prefWidth="250" styleClass="search-field" />
+        <JFXButton fx:id="notificationButton" styleClass="icon-button" onAction="#showNotifications">
+            <graphic>
+                <Label text="🔔" style="-fx-font-size: 20;" />
+            </graphic>
+        </JFXButton>
+        <Label fx:id="lastUpdatedLabel" text="Last updated: Just now" style="-fx-text-fill: #666;" />
+    </HBox>
+
+    <!-- Weather Widget -->
+    <HBox styleClass="weather-widget" spacing="10" alignment="CENTER_LEFT">
+        <ImageView fx:id="weatherIcon" fitWidth="40" fitHeight="40" />
+        <VBox>
+            <Label fx:id="temperatureLabel" text="--°C" styleClass="temperature-label" />
+            <Label fx:id="weatherDescription" text="Loading weather..." style="-fx-text-fill: #666;" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="soilMoistureLabel" text="Soil Moisture: --%" styleClass="moisture-label" />
+    </HBox>
+    
+    <!-- Summary Cards with Hover Effects -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <!-- Recent Analyses Card -->
+        <VBox styleClass="dashboard-card hover-effect" prefWidth="250" prefHeight="180" onMouseEntered="#handleCardHover" onMouseExited="#handleCardExit">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="📊" style="-fx-font-size: 24;" />
+                <Label text="Recent Analyses" styleClass="subtitle-label" />
+            </HBox>
+            <Label fx:id="recentAnalysesCount" text="0" styleClass="health-score" />
+            <Label text="analyses this month" style="-fx-text-fill: #666;" />
+            <ProgressBar fx:id="analysesProgress" progress="0.0" prefWidth="200" />
+        </VBox>
+        
+        <!-- Recommendations Card -->
+        <VBox styleClass="dashboard-card hover-effect" prefWidth="250" prefHeight="180" onMouseEntered="#handleCardHover" onMouseExited="#handleCardExit">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="💡" style="-fx-font-size: 24;" />
+                <Label text="Active Recommendations" styleClass="subtitle-label" />
+            </HBox>
+            <Label fx:id="activeRecommendationsCount" text="0" styleClass="health-score" />
+            <Label text="recommendations pending" style="-fx-text-fill: #666;" />
+            <ProgressBar fx:id="recommendationsProgress" progress="0.0" prefWidth="200" />
+        </VBox>
+        
+        <!-- Soil Health Card -->
+        <VBox styleClass="dashboard-card hover-effect" prefWidth="250" prefHeight="180" onMouseEntered="#handleCardHover" onMouseExited="#handleCardExit">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="🌱" style="-fx-font-size: 24;" />
+                <Label text="Soil Health Score" styleClass="subtitle-label" />
+            </HBox>
+            <Label fx:id="soilHealthScore" text="0%" styleClass="health-score" />
+            <Label text="based on recent analyses" style="-fx-text-fill: #666;" />
+            <ProgressBar fx:id="healthProgress" progress="0.0" prefWidth="200" />
+        </VBox>
+    </HBox>
+
+    <!-- Quick Actions with Tooltips -->
+    <VBox spacing="10">
+        <Label text="Quick Actions" styleClass="subtitle-label" />
+        <HBox spacing="20" alignment="CENTER_LEFT">
+            <JFXButton text="New Soil Analysis" styleClass="jfx-button primary" onAction="#startNewAnalysis">
+                <graphic>
+                    <Label text="➕" style="-fx-font-size: 18;" />
+                </graphic>
+                <tooltip>
+                    <Tooltip text="Start a new soil analysis with detailed parameters" />
+                </tooltip>
+            </JFXButton>
+            <JFXButton text="View History" styleClass="jfx-button secondary" onAction="#viewHistory">
+                <graphic>
+                    <Label text="📋" style="-fx-font-size: 18;" />
+                </graphic>
+                <tooltip>
+                    <Tooltip text="View your analysis history and trends" />
+                </tooltip>
+            </JFXButton>
+            <JFXButton text="Generate Report" styleClass="jfx-button accent" onAction="#generateReport">
+                <graphic>
+                    <Label text="📊" style="-fx-font-size: 18;" />
+                </graphic>
+                <tooltip>
+                    <Tooltip text="Generate comprehensive soil analysis reports" />
+                </tooltip>
+            </JFXButton>
+        </HBox>
+    </VBox>
+
+    <!-- Quick Tips Section -->
+    <VBox styleClass="tips-section" spacing="10">
+        <Label text="Quick Tips" styleClass="subtitle-label" />
+        <HBox spacing="20" alignment="CENTER_LEFT">
+            <VBox styleClass="tip-card" prefWidth="200">
+                <Label text="💧" style="-fx-font-size: 24;" />
+                <Text text="Optimal soil moisture levels are between 20-40%" styleClass="tip-text" wrappingWidth="180" />
+            </VBox>
+            <VBox styleClass="tip-card" prefWidth="200">
+                <Label text="🌡️" style="-fx-font-size: 24;" />
+                <Text text="Soil temperature affects nutrient availability" styleClass="tip-text" wrappingWidth="180" />
+            </VBox>
+            <VBox styleClass="tip-card" prefWidth="200">
+                <Label text="🌱" style="-fx-font-size: 24;" />
+                <Text text="Regular testing helps maintain soil health" styleClass="tip-text" wrappingWidth="180" />
+            </VBox>
+        </HBox>
+    </VBox>
+    
+    <!-- Enhanced Charts Section -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Recent Activity Table with Sorting -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Recent Activity" styleClass="subtitle-label" />
+                <JFXComboBox fx:id="activityFilter" promptText="Filter by type" />
+            </HBox>
+            <TableView fx:id="recentActivityTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                <columns>
+                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="150" />
+                    <TableColumn fx:id="typeColumn" text="Type" prefWidth="150" />
+                    <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="400" />
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="100" />
+                </columns>
+            </TableView>
+        </VBox>
+        
+        <!-- Interactive Charts -->
+        <VBox spacing="10" prefWidth="400">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Health Trend" styleClass="subtitle-label" />
+                <JFXComboBox fx:id="chartTimeRange" promptText="Time Range" />
+            </HBox>
+            <StackPane VBox.vgrow="ALWAYS">
+                <LineChart fx:id="healthTrendChart" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <CategoryAxis label="Date" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Health Score" lowerBound="0" upperBound="100" />
+                    </yAxis>
+                </LineChart>
+                <JFXButton fx:id="exportChartButton" styleClass="icon-button" style="-fx-background-color: transparent;" 
+                          onAction="#exportChart" text="📥" />
+            </StackPane>
+        </VBox>
+    </HBox>
+
+    <!-- Notification Center (Hidden by default) -->
+    <VBox fx:id="notificationCenter" styleClass="notification-center" visible="false" managed="false">
+        <Label text="Notifications" styleClass="subtitle-label" />
+        <ListView fx:id="notificationList" VBox.vgrow="ALWAYS" styleClass="notification-list" />
+    </VBox>
+</VBox> 

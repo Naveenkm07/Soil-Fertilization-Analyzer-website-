@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AnalysisResultsController" 
+            fitToWidth="true" style="-fx-background: white;">
+    <VBox spacing="20" style="-fx-padding: 20;">
+        <!-- Header Section -->
+        <VBox styleClass="dashboard-card" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="📊" style="-fx-font-size: 24;" />
+                <Label text="Analysis Results" styleClass="title-label" />
+                <Region HBox.hgrow="ALWAYS" />
+                <JFXButton fx:id="refreshButton" styleClass="jfx-button icon-button" 
+                          onAction="#handleRefresh" tooltip="Refresh Data">
+                    <graphic>
+                        <Label text="🔄" style="-fx-font-size: 18;" />
+                    </graphic>
+                </JFXButton>
+            </HBox>
+            <GridPane hgap="20" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="200" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+                
+                <Label text="Analysis Type:" GridPane.rowIndex="0" GridPane.columnIndex="0" 
+                       style="-fx-font-weight: bold;" tooltip="Type of soil analysis performed" />
+                <Label fx:id="analysisTypeLabel" text="Analysis Type" styleClass="subtitle-label" 
+                       GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                
+                <Label text="Date:" GridPane.rowIndex="1" GridPane.columnIndex="0" 
+                       style="-fx-font-weight: bold;" tooltip="Date of analysis" />
+                <Label fx:id="dateLabel" text="Date" style="-fx-text-fill: #666;" 
+                       GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                
+                <Label text="Location:" GridPane.rowIndex="2" GridPane.columnIndex="0" 
+                       style="-fx-font-weight: bold;" tooltip="Location where soil sample was taken" />
+                <Label fx:id="locationLabel" text="Location" style="-fx-text-fill: #666;" 
+                       GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            </GridPane>
+        </VBox>
+        
+        <!-- Soil Parameters Section -->
+        <VBox spacing="15">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Soil Parameters" styleClass="subtitle-label" />
+                <JFXButton fx:id="compareButton" text="Compare" styleClass="jfx-button secondary"
+                          onAction="#handleCompare" tooltip="Compare with previous analyses">
+                    <graphic>
+                        <Label text="📈" style="-fx-font-size: 14;" />
+                    </graphic>
+                </JFXButton>
+            </HBox>
+            <HBox spacing="20">
+                <!-- pH Level Card -->
+                <VBox styleClass="parameter-card" prefWidth="200">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15" />
+                    </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🌡️" style="-fx-font-size: 20;" />
+                        <Label text="pH Level" style="-fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <JFXButton fx:id="phInfoButton" styleClass="jfx-button icon-button"
+                                  onAction="#showPHInfo" tooltip="Learn more about pH levels">
+                            <graphic>
+                                <Label text="ℹ️" style="-fx-font-size: 14;" />
+                            </graphic>
+                        </JFXButton>
+                    </HBox>
+                    <Label fx:id="phLabel" styleClass="health-score" />
+                    <ProgressBar fx:id="phProgressBar" prefWidth="170" />
+                    <Label fx:id="phStatusLabel" style="-fx-text-fill: #666;" />
+                </VBox>
+                
+                <!-- Nutrients Card -->
+                <VBox styleClass="parameter-card" prefWidth="200">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15" />
+                    </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🌿" style="-fx-font-size: 20;" />
+                        <Label text="Nutrients" style="-fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <JFXButton fx:id="nutrientsInfoButton" styleClass="jfx-button icon-button"
+                                  onAction="#showNutrientsInfo" tooltip="Learn more about soil nutrients">
+                            <graphic>
+                                <Label text="ℹ️" style="-fx-font-size: 14;" />
+                            </graphic>
+                        </JFXButton>
+                    </HBox>
+                    <VBox spacing="10">
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="N:" style="-fx-font-weight: bold;" tooltip="Nitrogen" />
+                            <Label fx:id="nitrogenLabel" />
+                            <ProgressBar fx:id="nitrogenProgressBar" prefWidth="100" />
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="P:" style="-fx-font-weight: bold;" tooltip="Phosphorus" />
+                            <Label fx:id="phosphorusLabel" />
+                            <ProgressBar fx:id="phosphorusProgressBar" prefWidth="100" />
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="K:" style="-fx-font-weight: bold;" tooltip="Potassium" />
+                            <Label fx:id="potassiumLabel" />
+                            <ProgressBar fx:id="potassiumProgressBar" prefWidth="100" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+                
+                <!-- Organic Matter & Moisture Card -->
+                <VBox styleClass="parameter-card" prefWidth="200">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15" />
+                    </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="💧" style="-fx-font-size: 20;" />
+                        <Label text="Soil Quality" style="-fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <JFXButton fx:id="qualityInfoButton" styleClass="jfx-button icon-button"
+                                  onAction="#showQualityInfo" tooltip="Learn more about soil quality">
+                            <graphic>
+                                <Label text="ℹ️" style="-fx-font-size: 14;" />
+                            </graphic>
+                        </JFXButton>
+                    </HBox>
+                    <VBox spacing="10">
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="OM:" style="-fx-font-weight: bold;" tooltip="Organic Matter" />
+                            <Label fx:id="organicMatterLabel" />
+                            <ProgressBar fx:id="organicMatterProgressBar" prefWidth="100" />
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="H₂O:" style="-fx-font-weight: bold;" tooltip="Moisture Content" />
+                            <Label fx:id="moistureLabel" />
+                            <ProgressBar fx:id="moistureProgressBar" prefWidth="100" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Nutrient Balance Chart -->
+        <VBox spacing="10" styleClass="dashboard-card">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Nutrient Balance" styleClass="subtitle-label" />
+                <Region HBox.hgrow="ALWAYS" />
+                <JFXButton fx:id="chartToggleButton" text="Toggle View" styleClass="jfx-button secondary"
+                          onAction="#toggleChartView" tooltip="Switch between chart views">
+                    <graphic>
+                        <Label text="🔄" style="-fx-font-size: 14;" />
+                    </graphic>
+                </JFXButton>
+            </HBox>
+            <PieChart fx:id="nutrientBalanceChart" prefHeight="200" />
+        </VBox>
+        
+        <!-- Recommendations Section -->
+        <VBox spacing="10" styleClass="recommendations-section">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="💡" style="-fx-font-size: 20;" />
+                <Label text="Recommendations" styleClass="subtitle-label" />
+                <Region HBox.hgrow="ALWAYS" />
+                <JFXButton fx:id="copyButton" text="Copy" styleClass="jfx-button secondary"
+                          onAction="#copyRecommendations" tooltip="Copy recommendations to clipboard">
+                    <graphic>
+                        <Label text="📋" style="-fx-font-size: 14;" />
+                    </graphic>
+                </JFXButton>
+            </HBox>
+            <TextArea fx:id="recommendationsArea" editable="false" wrapText="true" prefRowCount="5" 
+                      style="-fx-background-color: white; -fx-background-radius: 5;" />
+        </VBox>
+        
+        <!-- Action Buttons -->
+        <HBox spacing="20" alignment="CENTER_RIGHT">
+            <JFXButton text="Back to Dashboard" styleClass="jfx-button secondary" onAction="#handleBackToDashboard">
+                <graphic>
+                    <Label text="←" style="-fx-font-size: 18;" />
+                </graphic>
+            </JFXButton>
+            <JFXButton text="Generate Report" styleClass="jfx-button primary" onAction="#handleGenerateReport">
+                <graphic>
+                    <Label text="📄" style="-fx-font-size: 18;" />
+                </graphic>
+            </JFXButton>
+            <JFXButton text="Share Results" styleClass="jfx-button accent" onAction="#handleShareResults">
+                <graphic>
+                    <Label text="↗️" style="-fx-font-size: 18;" />
+                </graphic>
+            </JFXButton>
+        </HBox>
+    </VBox>
+</ScrollPane> 

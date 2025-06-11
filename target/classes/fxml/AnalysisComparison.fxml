@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AnalysisComparisonController" 
+            fitToWidth="true" style="-fx-background: white;">
+    <VBox spacing="20" style="-fx-padding: 20;">
+        <!-- Header Section -->
+        <VBox styleClass="dashboard-card" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="📊" style="-fx-font-size: 24;" />
+                <Label text="Analysis Comparison" styleClass="title-label" />
+                <Region HBox.hgrow="ALWAYS" />
+                <JFXButton fx:id="backButton" styleClass="jfx-button secondary" 
+                          onAction="#handleBack" tooltip="Back to Results">
+                    <graphic>
+                        <Label text="←" style="-fx-font-size: 18;" />
+                    </graphic>
+                </JFXButton>
+            </HBox>
+            
+            <!-- Analysis Selection -->
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <VBox spacing="5">
+                    <Label text="Current Analysis" style="-fx-font-weight: bold;" />
+                    <ComboBox fx:id="currentAnalysisCombo" prefWidth="200" 
+                             onAction="#handleAnalysisSelection" />
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Compare With" style="-fx-font-weight: bold;" />
+                    <ComboBox fx:id="compareAnalysisCombo" prefWidth="200" 
+                             onAction="#handleAnalysisSelection" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <JFXButton fx:id="exportButton" text="Export Comparison" 
+                          styleClass="jfx-button primary" onAction="#handleExport"
+                          tooltip="Export comparison as PDF">
+                    <graphic>
+                        <Label text="📄" style="-fx-font-size: 18;" />
+                    </graphic>
+                </JFXButton>
+            </HBox>
+        </VBox>
+        
+        <!-- Comparison Charts -->
+        <VBox spacing="15">
+            <Label text="Parameter Comparison" styleClass="subtitle-label" />
+            <HBox spacing="20">
+                <!-- pH Level Comparison -->
+                <VBox styleClass="parameter-card" prefWidth="300">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15" />
+                    </padding>
+                    <Label text="pH Level Comparison" style="-fx-font-weight: bold;" />
+                    <BarChart fx:id="phChart" prefHeight="200">
+                        <xAxis>
+                            <CategoryAxis label="Analysis" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="pH Level" lowerBound="0" upperBound="14" />
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+                
+                <!-- Nutrients Comparison -->
+                <VBox styleClass="parameter-card" prefWidth="300">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15" />
+                    </padding>
+                    <Label text="Nutrients Comparison" style="-fx-font-weight: bold;" />
+                    <LineChart fx:id="nutrientsChart" prefHeight="200">
+                        <xAxis>
+                            <CategoryAxis label="Analysis" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="mg/kg" />
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Detailed Comparison Table -->
+        <VBox spacing="10" styleClass="dashboard-card">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <Label text="Detailed Comparison" styleClass="subtitle-label" />
+            <TableView fx:id="comparisonTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="parameterColumn" text="Parameter" prefWidth="150" />
+                    <TableColumn fx:id="currentValueColumn" text="Current Value" prefWidth="150" />
+                    <TableColumn fx:id="compareValueColumn" text="Compare Value" prefWidth="150" />
+                    <TableColumn fx:id="differenceColumn" text="Difference" prefWidth="150" />
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="150" />
+                </columns>
+            </TableView>
+        </VBox>
+        
+        <!-- Recommendations Comparison -->
+        <VBox spacing="10" styleClass="dashboard-card">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <Label text="Recommendations Comparison" styleClass="subtitle-label" />
+            <HBox spacing="20">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Current Analysis" style="-fx-font-weight: bold;" />
+                    <TextArea fx:id="currentRecommendations" editable="false" 
+                             wrapText="true" prefRowCount="5" />
+                </VBox>
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Comparison Analysis" style="-fx-font-weight: bold;" />
+                    <TextArea fx:id="compareRecommendations" editable="false" 
+                             wrapText="true" prefRowCount="5" />
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Trend Analysis -->
+        <VBox spacing="10" styleClass="dashboard-card">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <Label text="Trend Analysis" styleClass="subtitle-label" />
+            <LineChart fx:id="trendChart" prefHeight="300">
+                <xAxis>
+                    <CategoryAxis label="Date" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Value" />
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </VBox>
+</ScrollPane> 

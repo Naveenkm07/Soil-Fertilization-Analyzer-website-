@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<JFXDrawer xmlns:fx="http://javafx.com/fxml" fx:controller="controller.DashboardController" 
+           prefWidth="1200" prefHeight="800" style="-fx-background-color: white;">
+    
+    <!-- Main Content -->
+    <StackPane>
+        <!-- Top Toolbar -->
+        <VBox>
+            <HBox style="-fx-background-color: #43cea2; -fx-padding: 10;" alignment="CENTER_LEFT" spacing="10">
+                <JFXButton fx:id="menuButton" style="-fx-background-color: transparent;" onAction="#toggleDrawer">
+                    <graphic>
+                        <Text text="☰" style="-fx-fill: white; -fx-font-size: 24;" />
+                    </graphic>
+                </JFXButton>
+                <Label fx:id="welcomeLabel" text="Welcome, User" style="-fx-text-fill: white; -fx-font-size: 18;" />
+                <Region HBox.hgrow="ALWAYS" />
+                <JFXButton fx:id="logoutButton" text="Logout" style="-fx-background-color: transparent; -fx-text-fill: white;" onAction="#handleLogout" />
+            </HBox>
+            
+            <!-- Content Area -->
+            <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS">
+                <!-- Content will be loaded here dynamically -->
+            </StackPane>
+        </VBox>
+    </StackPane>
+    
+    <!-- Side Navigation Drawer -->
+    <JFXDrawer.SidePane>
+        <VBox style="-fx-background-color: white; -fx-padding: 20;" spacing="10" prefWidth="250">
+            <Label text="Soil Analysis System" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #185a9d;" />
+            <Separator />
+            
+            <VBox spacing="5" style="-fx-padding: 10 0;">
+                <JFXButton fx:id="dashboardButton" text="Dashboard" styleClass="nav-button" onAction="#showDashboard" />
+                <JFXButton fx:id="newAnalysisButton" text="New Analysis" styleClass="nav-button" onAction="#showNewAnalysis" />
+                <JFXButton fx:id="historyButton" text="Analysis History" styleClass="nav-button" onAction="#showHistory" />
+                <JFXButton fx:id="recommendationsButton" text="Recommendations" styleClass="nav-button" onAction="#showRecommendations" />
+                <JFXButton fx:id="profileButton" text="Profile" styleClass="nav-button" onAction="#showProfile" />
+            </VBox>
+        </VBox>
+    </JFXDrawer.SidePane>
+</JFXDrawer> 
