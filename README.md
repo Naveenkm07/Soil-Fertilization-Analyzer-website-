@@ -78,5 +78,9 @@ SoilNutrientAnalysisApp/
 
 ![Soil Fertilization Analyzer UI](screenshot.png)
 
+## 🖼️ Analysis Result Screenshot
+
+![Analysis Result](analysis_result.jpg)
+
 ## 📚 License
 MIT 
