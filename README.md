@@ -76,7 +76,7 @@ SoilNutrientAnalysisApp/
 
 ## 🖼️ Application Screenshot
 
-![Soil Fertilization Analyzer UI](screenshot.png)
+![Soil Fertilization Analyzer UI](analysis_result.jpg)
 
 ## 🖼️ Analysis Result Screenshot
 
