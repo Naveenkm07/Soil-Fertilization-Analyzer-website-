@@ -82,5 +82,11 @@ SoilNutrientAnalysisApp/
 
 ![Analysis Result](analysis_result.jpg)
 
+## 🖼️ Additional Screenshots
+
+![Dashboard Screenshot](screenshort2.jpg)
+
+![Dashboard Screenshot 2](screenshort3.jpg)
+
 ## 📚 License
 MIT 
