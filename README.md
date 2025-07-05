@@ -74,5 +74,9 @@ SoilNutrientAnalysisApp/
 ## 🖼️ Screenshots
 - Screenshots of each screen are provided in the `assets/` folder.
 
+## 🖼️ Application Screenshot
+
+![Soil Fertilization Analyzer UI](screenshot.png)
+
 ## 📚 License
 MIT 
