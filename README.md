@@ -11,7 +11,7 @@ A beautifully designed, fully-featured JavaFX desktop application for soil nutri
 - Material Design / Tailwind CSS (for front-end styling)
 
 ## 🎯 Key Features
-- Login/Register system (with validation and user roles)
+- Login/Register system. (with validation and user roles)
 - Modern dashboard with real-time data cards
 - Soil nutrient input form (NPK sliders/fields)
 - Automated fertilizer recommendation engine
