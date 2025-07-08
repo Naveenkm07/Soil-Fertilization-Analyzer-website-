@@ -15,7 +15,7 @@ A beautifully designed, fully-featured JavaFX desktop application for soil nutri
 - Modern dashboard with real-time data cards
 - Soil nutrient input form (NPK sliders/fields)
 - Automated fertilizer recommendation engine
-- Dynamic PDF report generator
+- Dynamic PDF report generator bro
 - Interactive charts (NPK vs optimal)
 - Soil report history
 - Profile page with user info and soil region selection
